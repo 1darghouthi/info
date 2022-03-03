@@ -1,0 +1,26 @@
+<div class="container">
+<form #userform="ngForm" novalidate (ngSubmit)="onSelect()">
+   {{userform.value | json}}<br>
+  {{user | json}}
+    <div>
+        <label>Nom :</label>
+        <input name="name" #name="ngModel" class="form-control" [class.is-invalid]="name.invalid && name.touched"
+         required [(ngModel)]="user.name" type="text"/>
+             
+    </div>
+    <div>
+        <label>email :</label>
+        <input name="email" #email="ngModel" [class.is-invalid]="email.invalid" required [(ngModel)]="user.email" type="text" pattern="^\d{8}$">
+        <div *ngIf="email.errors&& email.touched">
+        <small class="text-danger" *ngIf="email.errors['required']"> Montant est obligatoire</small> 
+        <small class="text-danger" *ngIf="email.errors['pattern']"> Au moins 8 caracters</small> 
+    </div>
+    <div>
+        <label>Telephon :</label>
+        <input name="telephon" #telephon="ngModel" [class.is-invalid]="telephon.invalid" required [(ngModel)]="tel" type="number">
+    </div>
+    <div>
+        <button type="submit">Valider</button>
+    </div>
+
+</div>
